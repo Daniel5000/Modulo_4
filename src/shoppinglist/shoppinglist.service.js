@@ -8,7 +8,7 @@ angular.module('ShoppingList')
 
 
 ShoppingListService.$inject = ['$q', '$timeout','$http']
-function ShoppingListService($q, $timeout) {
+function ShoppingListService($q, $timeout,$http) {
   var service = this;
 
   // List of shopping items
@@ -16,9 +16,13 @@ function ShoppingListService($q, $timeout) {
 
   service.getDatos =function () {
         var response = $http({
-          method: "get",
+          method: "GET",
           url: ("http://davids-restaurant.herokuapp.com/categories.json")
-        });
+        }).then(function successCallback(response) {
+     Console.log(response);
+  }, function errorCallback(response) {
+    Console.log(response);
+  });
         // var response ="asasasas";
         return response;
     }
@@ -31,12 +35,13 @@ function ShoppingListService($q, $timeout) {
       var promise=deferred.promise;
 
       promise = service.getDatos();
+
       promise.then(function (response) {
 
         Console.log(response);
       })
        .catch(function (error) {
-          
+
           Console.log(error);
        });
 
