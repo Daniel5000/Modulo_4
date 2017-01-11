@@ -32,14 +32,20 @@ function ShoppingListService($q, $timeout) {
   // Simulates call to server
   // Returns a promise, NOT items array directly
   service.getItems = function () {
-    var deferred = $q.defer();
-
-    var response = $http({
-        method: "GET",
-        url: (ApiBasePath + "/categories.json")
+    $http.get(ApiBasePath + "/categories.json")
+    .success(function(data, status, headers, config) {
+      Console.console.log(data);
+      }).
+      error(function(data, status, headers, config) {
+        Console.console.log("ERROR");
       });
-    deferred.resolve(response);
-    return deferred.promise;
+
+    // var response = $http({
+    //     method: "GET",
+    //     url: (ApiBasePath + "/categories.json")
+    //   });
+
+    return items;
   };
 }
 
