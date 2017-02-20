@@ -1,3 +1,21 @@
-<div>Item name: {{ itemDetail.name }}</div>
-<div>Item short name: {{ itemDetail.short_name }}</div>
-<div>Item description: {{ itemDetail.special_instructions }}</div>
+
+
+<!-- <div>Item name: {{ itemDetail.name }}</div>
+ <div>Item quantity price small: {{ itemDetail.quantity }}</div>
+ <div>Item quantity price large: {{ itemDetail.priceLArge }}</div>
+<div>Item description: {{ itemDetail.description }}</div> -->
+ <!-- <ul>
+  <li ng-repeat="item in itemDetail.objeto">
+    item: {{ item.Nombre}} -- Price large:{{ item.price_large }} Price small: {{ item.price_small }}
+
+  </li>
+</ul> -->
+
+
+<ul>
+ <li ng-repeat="item in itemDetail.Categories">
+   item: {{item.name}}
+   Price large:{{item.price_large}}
+   Price small: {{item.price_small}}
+ </li>
+</ul>

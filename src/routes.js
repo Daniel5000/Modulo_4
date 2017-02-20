@@ -19,7 +19,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     templateUrl: 'src/shoppinglist/templates/home.template.html'
   })
 
-  //Premade list page
+  // Premade list page
   .state('mainList', {
     url: '/main-list',
     templateUrl: 'src/shoppinglist/templates/main-shoppinglist.template.html',
@@ -33,11 +33,16 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 
   // Item detail
   .state('mainList.itemDetail', {
-    // url: '/item-detail/{itemId}',
+    url: '/item-detail/{itemId}',
     templateUrl: 'src/shoppinglist/templates/item-detail.template.html',
-    controller: 'ItemDetailController as itemDetail',
+     controller: 'ItemDetailController as itemDetail',
     params: {
       itemId: null
+    },
+    resolve: {
+    Categories: ['ShoppingListService','$stateParams', function (ShoppingListService,$stateParams) {
+      return ShoppingListService.getItemsForCategory($stateParams.itemId);
+    }]
     }
   });
 
